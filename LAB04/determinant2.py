@@ -44,17 +44,17 @@ def swap(matrix, counter):
                 copy[u+1] = matrix[u]
     return copy
 
-def determinat(matrix):
-    check = []
-    for j in range(len(matrix)):
-        for k in range(len(matrix[0])):
-            if matrix[j][j] != 0:
-                check.append(matrix[j][j])
-            if matrix[j][k] != 0:
-                return 0
+# def determinat(matrix):
+#     check = []
+#     for j in range(len(matrix)):
+#         for k in range(len(matrix[0])):
+#             if matrix[j][j] != 0:
+#                 check.append(matrix[j][j])
+#             if matrix[j][k] != 0:
+#                 return 0
     
-    if all(element == check[0] for element in check):
-        return 1
+#     if all(element == check[0] for element in check):
+#         return 1
             
 def show_matrix(matrix):
     for _ in matrix:
@@ -64,46 +64,58 @@ def determinat(matrix):
     matrix_copy = matrix
     row = len(matrix)
     col = len(matrix[0])
+    #check thant all element in row is 0, if is return det=0
+    for r in matrix:
+        if all(v == 0 for v in r):
+            return 0
 
-    p_operator = [1]
+    #check if all element in column is equal =0 , if is det=0 
+    swap_times = 0
 
     for i in range(row):
         for j in range(row):
+            #to moze byc petla nieskonczona, trzeba tego uniknac
+            if matrix[i][i] == 0:
+                matrix.append(matrix[j])
+                matrix.pop(j)
+                swap_times += 1
             if i >= j:
                 continue
             wspol = matrix[j][i]/matrix[i][i]
             for k in range(col):
                 matrix[j][k] = matrix[j][k] - matrix[i][k]*wspol
-                #matrix[k][j] = (matrix_copy[i][i] * matrix_copy[k][j] - matrix_copy[k][i] * matrix_copy[i][j])/p_operator[i]
-            print(wspol)
-    show_matrix(matrix)
     
-
-    # for i in range(row):
-    #     for j in range(row):
-    #         if i >= j:
-    #             continue
-    #         wspol = matrix[j][0]/matrix[i][i]
-    #         for k in range(col):
-    #             matrix[j][k] = matrix[j][k] - matrix[i][k]*wspol
-    #             #matrix[k][j] = (matrix_copy[i][i] * matrix_copy[k][j] - matrix_copy[k][i] * matrix_copy[i][j])/p_operator[i]
-    #         print(wspol)
-    # show_matrix(matrix)
     det = 1
     for m in range(row):
         for n in range(col):
             if m == n:
                 det *= matrix[m][n]
-    print("det ", det)
-                
+    return ((-1)**swap_times) * det
 
 
 if __name__ == '__main__':
+    # matrix1 = [
+    #     [25,5,1],
+    #     [64,8,1],
+    #     [144,12,1]
+    # ]
+
+    # matrix1 = [
+    #     [0,0,0],
+    #     [64,8,1],
+    #     [144,12,1]]
+
+    # matrix1 = [
+    #     [0,1,3],
+    #     [1,2,0],
+    #     [0,3,4]]
+
     matrix1 = [
-        [25,5,1],
-        [64,8,1],
-        [144,12,1]
-    ]
-    determinat(matrix1)
+        [0,1,3,4],
+        [1,2,5,3],    
+        [5,7,1,2],    
+        [9,3,2,1]]
+
+    print(determinat(matrix1))
     #print(determinat(matrix1))
-        
+       
