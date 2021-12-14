@@ -43,18 +43,6 @@ def swap(matrix, counter):
             else:
                 copy[u+1] = matrix[u]
     return copy
-
-# def determinat(matrix):
-#     check = []
-#     for j in range(len(matrix)):
-#         for k in range(len(matrix[0])):
-#             if matrix[j][j] != 0:
-#                 check.append(matrix[j][j])
-#             if matrix[j][k] != 0:
-#                 return 0
-    
-#     if all(element == check[0] for element in check):
-#         return 1
             
 def show_matrix(matrix):
     for _ in matrix:
@@ -68,6 +56,14 @@ def determinat(matrix):
     for r in matrix:
         if all(v == 0 for v in r):
             return 0
+    col_value = []
+    for r in range(row):
+        for c in range(col):
+            col_value.append(matrix[c][r])
+        if all(v == 0 for v in col_value):
+            return 0
+        else:
+            col_value.clear()
 
     #check if all element in column is equal =0 , if is det=0 
     swap_times = 0
@@ -106,9 +102,9 @@ if __name__ == '__main__':
     #     [144,12,1]]
 
     # matrix1 = [
-    #     [0,1,3],
+    #     [0,1,0],
     #     [1,2,0],
-    #     [0,3,4]]
+    #     [0,3,0]]
 
     matrix1 = [
         [0,1,3,4],
