@@ -1,12 +1,3 @@
-# import matplotlib.pyplot as plt
-# data = [1.7,1.8,2.0,2.2,2.2,2.3,2.4,2.5,2.5,2.5,2.6,2.6,2.8,
-#         2.9,3.0,3.1,3.1,3.2,3.3,3.5,3.6,3.7,4.1,4.1,4.2,4.3]
-# #this histogram has a range from 1 to 4
-# #and 8 different bins
-# plt.hist(data, range=(1,4), bins=8)
-# plt.show()
-# #https://stackoverflow.com/questions/28269157/plotting-in-a-non-blocking-way-with-matplotlib
-
 
 import psutil
 import threading
